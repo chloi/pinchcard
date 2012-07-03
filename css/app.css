@@ -1,1 +1,18 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; /* Disable selection/Copy of UIWebView */
+}
 
+.stage DIV {
+  border:1px solid #000;
+  padding:40px 0px 40px 10px;
+}
+
+.dot {
+  position:absolute;
+  background-color:red;
+  width:20px;
+  height:20px;
+  border:1px solid #000;
+}
