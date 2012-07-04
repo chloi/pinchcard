@@ -7,6 +7,7 @@
 .stage DIV {
   border:1px solid #000;
   padding:40px 0px 40px 10px;
+  height:60px;
 }
 
 .dot {
@@ -16,3 +17,6 @@
   height:20px;
   border:1px solid #000;
 }
+
+.drag {-webkit-transition:all 0 cubic-bezier(0, 0, 0.2, 1) !important;}
+.slow {-webkit-transition:all 0.35s ease-in-out !important;}

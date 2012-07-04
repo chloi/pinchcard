@@ -14,16 +14,8 @@
       <script src="js/zepto-1.0.rc.js" ></script> 
       <script src="js/zepto-onpress.js" ></script>
       <script src="js/pinchcard.js" ></script>
-
       <script>
-        var catcher = function(evt) {
-          if (evt.touches.length < 2)
-            evt.preventDefault();
-        };
-             
-        // Stop dbltap to center / zoom
-        // $(document).bind('touchstart', catcher);
-        
+      
         $(document).ready(function(){      
           var p = new PinchCard()
         });
@@ -39,7 +31,13 @@
       <div class="card">Item 3</div>
       <div class="card">Item 4</div>
       <div class="card">Item 5</div>
-      <div class="card">Item 6</div>      
+      <div class="card">Item 6</div>
+      <div class="card">Item 7</div>
+      <div class="card">Item 8</div>
+      <div class="card">Item 9</div>
+      <div class="card">Item 10</div>
+      <div class="card">Item 11</div>
+      
     </div>                    
   </body>
 </html>

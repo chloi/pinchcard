@@ -7,57 +7,62 @@
        }
     }
   
-
     PinchCard = function(){
       
       var touch = {};
       var _this = this;
-      var selEl = null;      
+      var selEl = null;  
       
+
       $('.stage').bind('touchstart', function(e){
         if ( e.touches.length == 2 ) {
+          e.preventDefault();
+          
           touch.x1 = e.touches[0].pageX;
           touch.y1 = e.touches[0].pageY;
           touch.x2 = e.touches[1].pageX;
           touch.y2 = e.touches[1].pageY;
-          
-          // This is a helper node to show what has been selected.
-          var el = document.createElement('DIV');
-          el.style.top = (((touch.y2 - touch.y1) / 2) + touch.y1);
-          el.style.left = (((touch.x1 - touch.x2) / 2) + touch.x1);
-          el.className = 'dot';
-          $('BODY').append(el);
-          
-          touch.midY = (((touch.y2 - touch.y1) / 2) + touch.y1);
-          touch.midX = (((touch.x1 - touch.x2) / 2) + touch.x1);
+                    
+          var midY = (((touch.y2 - touch.y1) / 2) + touch.y1);
+          var midX = (((touch.x1 - touch.x2) / 2) + touch.x1);
 
+          // Find the element between the touches.
           $('.stage DIV').each(function(i){
-            if ($(this).offset().top < touch.midY && $(this).offset().top + $(this).offset().height > touch.midY) {
+            if ($(this).offset().top < midY && $(this).offset().top + $(this).offset().height > midY) {
               selEl = this;
             }
           });
-          
-          $(selEl).css({'backgroundColor':'green'})
-          // console.log("Y Element under", touch.midY, touch.midX, el);
-          
+
+          $(selEl).css({'border-bottom':'5px solid #000'});
         }
       }).bind('touchmove',function(e){
     		if (e.touches.length == 2 ) {
+    		  e.preventDefault();
+
+          // $(selEl).removeClass('drag');
+              		  
     			touch.dx1 = e.touches[0].pageX - touch.x1;
     			touch.dy1 = e.touches[0].pageY - touch.y1;
     			touch.dx2 = e.touches[1].pageX - touch.x2;
     			touch.dy2 = e.touches[1].pageY - touch.y2;
 
-          // console.log(touch.dy1, touch.dy2)
-          $(selEl).css({'backgroundColor':'purple'})          
+          // Normalize the top / bottom movement
+          var normDelta = ((touch.dy1 + touch.dy2) / 6);
+          
+          // Some threshold amount to trigger the move
+          if (Math.abs(normDelta) >= 1) {
+            if (normDelta < 0) {
+              $(selEl).css({'height':'150px','-webkit-transition-duration': '.250s'});
+            } else {
+              $(selEl).css({'height':'60px','-webkit-transition-duration': '.150s'});
+            }
+          }
   			}
-  			
-        
       }).bind('touchend touchcancel', function (e) {
-        $('.dot').remove();
-        $(selEl).css({'backgroundColor':'#fff'});
-        
+        $(selEl).removeClass('drag');
+        $(selEl).css({'border-bottom':'1px solid #000'})
       });
+
     }
       
 }).call(this);
