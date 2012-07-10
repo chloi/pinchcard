@@ -17,7 +17,7 @@
       <script>
       
         $(document).ready(function(){      
-          var p = new PinchCard()
+          var p = new PinchCard('.stage')
 
           $(".card").bind('openPanel',function(e){
             console.log("Open ", e.target.innerHTML)

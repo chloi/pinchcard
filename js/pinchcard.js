@@ -7,15 +7,15 @@
        }
     }
   
-    PinchCard = function(){
-      
+    PinchCard = function(selector){
+
       var touch = {};
       var _this = this;
       var selEl = null;  
 
       this.fireAction = null;
 
-      $('.stage').bind('touchstart', function(e){
+      $(selector).bind('touchstart', function(e){
         if ( e.touches.length == 2 ) {
           e.preventDefault();
           
@@ -28,13 +28,11 @@
           var midX = (((touch.x1 - touch.x2) / 2) + touch.x1);
 
           // Find the element between the touches.
-          $('.stage DIV').each(function(i){
+          $(selector + ' DIV').each(function(i){
             if ($(this).offset().top < midY && $(this).offset().top + $(this).offset().height > midY) {
               selEl = this;
             }
           });
-
-          // $(selEl).css({'border-bottom':'5px solid #000'});
         }
       }).bind('touchmove',function(e){
     		if (e.touches.length == 2 ) {
@@ -50,19 +48,18 @@
           
           // Some threshold amount to trigger the move
           if (Math.abs(normDelta) >= 1 && this.fireAction === null) {
+
             if (normDelta < 0) {
-              this.fireAction = 1; // open
               $(selEl).trigger('openPanel');
             } else {
-              this.fireAction = 2; // close
               $(selEl).trigger('closePanel');
             }
+            this.fireAction = true;
+                        
           }
   			}
       }).bind('touchend touchcancel', function (e) {
         this.fireAction = null;
-        // $(selEl).removeClass('drag');
-        // $(selEl).css({'border-bottom':'1px solid #000'})
       });
 
     }
