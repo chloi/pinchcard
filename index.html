@@ -7,7 +7,7 @@
       <meta content='width=device-width, initial-scale=1.0 maximum-scale=1.0 user-scalable=0' name='viewport' />
       <meta name="viewport" content="width=device-width" />
 
-      <script src="http://10.244.36.242:8080/target/target-script-min.js#anonymous"></script>
+      <!-- // <script src="http://10.244.36.242:8080/target/target-script-min.js#anonymous"></script> -->
       
       <link rel="stylesheet" href="css/app.css"></link>
             
@@ -18,18 +18,12 @@
       
         $(document).ready(function(){      
           var p = new PinchCard('.stage')
-
-          $(".card").bind('openPanel',function(e){
+          $(".card").bind('openPanel', function(e){
             console.log("Open ", e.target.innerHTML)
-          })
-
+          });
         });
-        
-        
-        
       </script>
-      
-      
+
   </head>
   <body>
     <div class="stage">
