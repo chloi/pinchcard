@@ -18,8 +18,13 @@
       
         $(document).ready(function(){      
           var p = new PinchCard('.stage')
-          $(".card").bind('openPanel', function(e){
-            console.log("Open ", e.target.innerHTML)
+          $(".card").bind({
+            openPanel: function(e) {
+              console.log("Open ", e.target.innerHTML)	
+            },
+            closePanel: function(e) {
+              console.log("Close ", e.target.innerHTML)
+            }
           });
         });
       </script>
